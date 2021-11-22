@@ -21,7 +21,7 @@ dependencies {
     annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
-    annotationProcessor "io.micronaut.configuration:micronaut-openapi"
+//    annotationProcessor "io.micronaut.configuration:micronaut-openapi"
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     implementation "io.micronaut:micronaut-inject"
     implementation "io.swagger.core.v3:swagger-annotations"
@@ -29,6 +29,18 @@ dependencies {
     implementation "io.micronaut:micronaut-runtime"
     implementation "io.micronaut:micronaut-http-server-netty"
     implementation "io.micronaut:micronaut-http-client"
+
+    implementation 'commons-io:commons-io:2.11.0'
+
+    compileOnly "org.projectlombok:lombok:1.18.12"
+    compile "io.swagger:swagger-annotations:1.5.10"
+    annotationProcessor "org.projectlombok:lombok:1.18.12"
+
+    // GCP
+    implementation "com.google.cloud:google-cloud-pubsub:1.101.0"
+    implementation 'com.google.auth:google-auth-library-oauth2-http:1.2.1'
+    implementation "io.micronaut.gcp:micronaut-gcp-pubsub:4.0.0"
+
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
     testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
@@ -48,6 +60,10 @@ test {
 tasks.withType(JavaCompile){
     options.encoding = "UTF-8"
     options.compilerArgs.add('-parameters')
+}
+
+tasks.withType(JavaExec) {
+    environment "GOOGLE_APPLICATION_CREDENTIALS", new File(project.rootDir, 'credential.json').path
 }
 
 shadowJar {

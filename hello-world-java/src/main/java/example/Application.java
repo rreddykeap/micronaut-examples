@@ -16,20 +16,15 @@
 package example;
 
 import io.micronaut.runtime.Micronaut;
-
-/**
- * @author Graeme Rocher
- * @since 1.0
- */
-import io.reactivex.Maybe;
-import io.reactivex.Single;
-import io.micronaut.http.annotation.*;
-import java.util.List;
-import io.swagger.v3.oas.annotations.*;
-import io.swagger.v3.oas.annotations.info.*;
-import io.swagger.v3.oas.annotations.tags.*;
-import io.swagger.v3.oas.annotations.servers.*;
-import io.swagger.v3.oas.annotations.security.*;
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.annotations.servers.ServerVariable;
+import io.swagger.v3.oas.annotations.tags.Tag;
 /**
  * @author graemerocher
  * @since 1.0
