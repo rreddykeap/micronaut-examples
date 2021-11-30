@@ -12,4 +12,5 @@ public class PubsubMessage {
 
     String tenantId;
     String action;
+    String messageId;
 }

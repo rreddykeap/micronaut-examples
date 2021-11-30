@@ -8,6 +8,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.time.Instant;
 import java.util.List;
 
 @Singleton
@@ -16,12 +17,12 @@ public class MessagePublisher {
   @Inject
   LifecyclePubSubClient lifecyclePubSubClient;
 
-  @Scheduled(initialDelay = "10s", fixedDelay = "10s")
+  @Scheduled(initialDelay = "10s", fixedDelay = "5s")
   public void sendMessage() {
     String tenant = readTenant();
     if (tenant != null) {
       System.out.println("Publishing message for: " + tenant);
-      lifecyclePubSubClient.publishEvent(new PubsubMessage(tenant, "DUMMY"));
+      lifecyclePubSubClient.publishEvent(new PubsubMessage(tenant, "DELETED", "manual-publish-convrrt-" + Instant.now().toString()));
     }
   }
 
